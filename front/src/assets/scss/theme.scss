@@ -1,0 +1,68 @@
+#app {
+    background: $bg-default;
+
+    .app-content {
+        display: flex;
+        padding-top: 20px;
+
+        .app-left {
+            flex: 2.3;
+            margin-right: 15px;
+        }
+
+        .app-right {
+            flex: 1;
+        }
+    }
+
+    // filter: invert(100%) hue-rotate(180deg);
+
+    // img,
+    // video {
+    //     filter: invert(100%) hue-rotate(180deg);
+    // }
+
+    ::selection {
+        background: $bg-selection;
+        color: #666;
+    }
+
+    main {
+        max-width: 1200px;
+        margin: auto;
+    }
+}
+
+@media (max-width: 767px) {
+    #app {
+        .app-content {
+            flex-flow: column;
+
+            .app-left {
+                order: 2;
+                margin-right: 10px;
+                margin-left: 10px;
+            }
+
+            .app-right {
+                order: 1;
+                margin-right: 10px;
+                margin-left: 10px;
+            }
+        }
+    }
+
+    .app-none {
+        display: none;
+    }
+
+
+}
+
+.ht-active-router {
+    color: $bg-theme;
+}
+
+.ht-font-tip {
+    color: $bg-tip;
+}

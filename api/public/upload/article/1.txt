@@ -1,0 +1,84 @@
+每天进步一点点...
+
+1、首先安装好redis
+2、进行redis安装目录下，执行`mkdir cluster`创建存放集群配置文件的目录
+3、进入cluster目录执行`mkdir redis6380`创建redis6380-6388目录
+
+![83c401dc746e8fd61aab1010fac2b23b.png](https://api.lpyhutu.cn/1.0.2-blog/public/upload/article/20210108/3c984458bfccbba18443f65783d5f1fd.png)
+
+4、复制配置文件
+```
+cp redis.conf ./cluster/redis6380/redis.conf
+```
+5、进入redis6380目录修改redis.conf配置文件，有注释就去掉
+```
+port 6380
+pidfile "/www/server/redis/cluster/redis6380/redis.pid"
+dir "/www/server/redis/cluster/redis6380"
+cluster-enabled yes
+cluster-config-file "nodes-6380.conf"
+cluster-node-timeout 15000
+cluster-replica-validity-factor 10
+cluster-migration-barrier 1
+cluster-require-full-coverage yes
+cluster-replica-no-failover no
+```
+6、在cluster目录下执行命令`touch setport.sh`创建批量修改脚本，添加下面内容
+```
+sed "s/6380/6381/g" redis6380/redis.conf > ./redis6381/redis.conf
+sed "s/6380/6382/g" redis6380/redis.conf > ./redis6382/redis.conf
+sed "s/6380/6383/g" redis6380/redis.conf > ./redis6383/redis.conf
+sed "s/6380/6384/g" redis6380/redis.conf > ./redis6384/redis.conf
+sed "s/6380/6385/g" redis6380/redis.conf > ./redis6385/redis.conf
+sed "s/6380/6386/g" redis6380/redis.conf > ./redis6386/redis.conf
+sed "s/6380/6387/g" redis6380/redis.conf > ./redis6387/redis.conf
+sed "s/6380/6388/g" redis6380/redis.conf > ./redis6388/redis.conf
+```
+在该目录下先执行`chmod +x setport.sh`，然后执行`./setport.sh`，进入redis6381-redis6388目录里面，查看redis.conf是否添加并修改成功
+7、找到`redis-server`启动命令的目录（一般在src或bin），在该目录下执行命令`touch 
+ start.sh`创建批量启动脚本，添加下面内容
+```
+./redis-server /www/server/redis/cluster/redis6380/redis.conf
+./redis-server /www/server/redis/cluster/redis6381/redis.conf
+./redis-server /www/server/redis/cluster/redis6382/redis.conf
+./redis-server /www/server/redis/cluster/redis6383/redis.conf
+./redis-server /www/server/redis/cluster/redis6384/redis.conf
+./redis-server /www/server/redis/cluster/redis6385/redis.conf
+./redis-server /www/server/redis/cluster/redis6386/redis.conf
+./redis-server /www/server/redis/cluster/redis6387/redis.conf
+./redis-server /www/server/redis/cluster/redis6388/redis.conf
+```
+在该目录下执行`chmod +x start.sh`命令，然后执行`./start.sh`命令，使用`ps -ef |grep redis`查看是否启动成功
+
+![2.png](https://api.lpyhutu.cn/1.0.2-blog/public/upload/article/20210108/c20d55331f5127c6954a2f37f06f2687.png)
+
+8、分配槽位
+```
+./redis-cli --cluster create 127.0.0.1:6380 127.0.0.1:6381 127.0.0.1:6382 127.0.0.1:6383 127.0.0.1:6384 127.0.0.1:6385 127.0.0.1:6386 127.0.0.1:6387 127.0.0.1:6388 --cluster-replicas 2
+```
+![3.png](https://api.lpyhutu.cn/1.0.2-blog/public/upload/article/20210108/95d5893fff7a2f440464d10935712734.png)
+
+9、使用客户端启动验证
+```
+./redis-cli -h 127.0.0.1 -p 6380 -c
+```
+先执行`cluster nodes`命令，看到下面内容
+
+![4.png](https://api.lpyhutu.cn/1.0.2-blog/public/upload/article/20210108/38cc284c7ea2fa43331a12464cf24e22.png)
+
+然后添加key，获取Key，可以看到从6380端口变成6381，就说明已经部署成功
+
+![6.png](https://api.lpyhutu.cn/1.0.2-blog/public/upload/article/20210108/074e89e650f799db64fa3e0e381466e8.png)
+
+10、批量关闭脚本，借鉴==6、7==创建shutdown.sh文件，添加下面内容
+```
+./redis-cli -h 127.0.0.1 -p 6380 shutdown
+./redis-cli -h 127.0.0.1 -p 6381 shutdown
+./redis-cli -h 127.0.0.1 -p 6382 shutdown
+./redis-cli -h 127.0.0.1 -p 6383 shutdown
+./redis-cli -h 127.0.0.1 -p 6384 shutdown
+./redis-cli -h 127.0.0.1 -p 6385 shutdown
+./redis-cli -h 127.0.0.1 -p 6386 shutdown
+./redis-cli -h 127.0.0.1 -p 6387 shutdown
+./redis-cli -h 127.0.0.1 -p 6388 shutdown
+```

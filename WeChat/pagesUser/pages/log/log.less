@@ -1,0 +1,71 @@
+.log {
+    // padding: 25rpx;
+    font-size: 30rpx;
+
+    >.item {
+        >.left {
+            width: 100rpx;
+
+
+            view {
+                width: 2rpx;
+                background: #dddddd;
+
+            }
+
+            .top {
+                height: 50rpx;
+            }
+
+            .center {
+                height: 12rpx;
+                width: 12rpx;
+                border-radius: 100%;
+                border: 6rpx solid #8a8a8a;
+                background: #fff;
+                margin: 15rpx 0;
+            }
+
+            .bottom {
+                flex: 1;
+            }
+
+            // &::before {
+            //     height: 10rpx;
+            //     width: 10rpx;
+            //     // background: red;
+            // }
+        }
+
+
+        >.right {
+            margin: 30rpx 30rpx 30rpx 0;
+            flex: 1;
+            border-radius: 5rpx;
+            background: #8a8a8a;
+            color: #fff;
+
+            .content {
+                padding: 20rpx;
+
+                .num {
+
+                    margin-bottom: 20rpx;
+
+                    .version {
+                        background: #fff;
+                        color: #8a8a8a;
+                        padding: 0 10rpx;
+                        border-radius: 5rpx 0 0 5rpx;
+                    }
+
+                    .time {
+                        border: 1rpx solid #fff;
+                        padding: 0 10rpx;
+                        border-radius: 0 5rpx 5rpx 0;
+                    }
+                }
+            }
+        }
+    }
+}

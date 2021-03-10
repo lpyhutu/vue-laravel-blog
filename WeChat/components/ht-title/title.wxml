@@ -1,0 +1,4 @@
+<!-- 标题 -->
+<view class="ht-title">
+    <view class="text">{{text}}</view>
+</view>

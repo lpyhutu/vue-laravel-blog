@@ -1,0 +1,53 @@
+@for $i from 6 through 10 {
+    .b-font-size-#{$i*2}px {
+        font-size: 2px * $i;
+    }
+}
+
+@mixin line-clamp($line) {
+    display: -webkit-box;
+    display: -moz-box;
+    overflow: hidden;
+    -webkit-line-clamp: $line;
+    -webkit-box-orient: vertical;
+}
+
+.b-flex {
+    display: flex;
+}
+
+.b-col-center {
+    align-items: center;
+}
+
+.b-row-center {
+    justify-content: center;
+}
+
+.b-row-between {
+    justify-content: space-between;
+}
+
+.b-flow-row {
+    flex-flow: row;
+}
+
+.b-flow-column {
+    flex-flow: column;
+}
+
+.b-text-center {
+    text-align: center;
+}
+
+.b-border-bottom {
+    border-bottom: $b-border;
+}
+
+.b-border-all {
+    border: $b-border;
+}
+
+.b-head-bg {
+    background: $b-head-bg;
+}

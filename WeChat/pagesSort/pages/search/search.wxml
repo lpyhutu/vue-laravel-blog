@@ -1,0 +1,11 @@
+<ht-loading wx:if="{{isLoading}}"></ht-loading>
+<view class="search">
+    <view class="search-item">
+        <mp-searchbar bindinput="handleSearch" value="{{title}}"></mp-searchbar>
+    </view>
+    <!-- 填充 -->
+    <view class="fill"></view>
+    <!-- end -->
+    <ht-article-list list="{{articleList}}"></ht-article-list>
+    <ht-backtop wx:if="{{isBackTop}}"></ht-backtop>
+</view>

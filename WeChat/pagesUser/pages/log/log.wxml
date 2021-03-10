@@ -1,0 +1,19 @@
+<ht-loading wx:if="{{isLoading}}"></ht-loading>
+<view class="log">
+    <view class="item ht-flex" wx:for="{{logList}}" wx:key="key">
+        <view class="left ht-flex ht-flow-column ht-col-center">
+            <view class="top"></view>
+            <view class="center"></view>
+            <view class="bottom"></view>
+        </view>
+        <view class="right">
+            <view class="content">
+                <view class="num ht-flex">
+                    <view class="version">v{{item.version}}</view>
+                    <view class="time">{{item.created_at}}</view>
+                </view>
+                <rich-text class="text" nodes="{{item.content}}"></rich-text>
+            </view>
+        </view>
+    </view>
+</view>

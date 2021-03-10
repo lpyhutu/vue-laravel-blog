@@ -1,0 +1,17 @@
+<!-- 文章列表 -->
+<view class="article-list">
+    <view class="item ht-flex ht-col-center {{isSort?'item-sort':''}}" wx:for="{{list}}" data-id="{{item.id}}" wx:key="key" bindtap="jumpDetail">
+        <view class="img ht-flex ht-col-center" wx:if="{{!isSort}}">
+            <image src="{{item.img_url[0]}}" />
+        </view>
+        <view class="text ht-flex ht-flow-column ht-row-around">
+            <view class="title line-clamp-two ">{{item.title}}</view>
+            <view class="num ht-flex ht-col-center">
+                <icon class="iconfont icon-eye" />
+                <text>{{item.read_num}}</text>
+                <icon class="iconfont icon-like" />
+                <text>{{item.thumb_num}}</text>
+            </view>
+        </view>
+    </view>
+</view>

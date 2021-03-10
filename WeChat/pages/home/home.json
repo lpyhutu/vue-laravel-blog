@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "mp-searchbar": "weui-miniprogram/searchbar/searchbar",
+    "ht-title": "/components/ht-title/title",
+    "ht-loading": "/components/ht-loading/loading",
+    "ht-backtop": "/components/ht-backtop/backtop",
+    "ht-article-list": "/components/ht-article-list/article-list"
+  },
+  "enablePullDownRefresh": true
+}

@@ -1,0 +1,28 @@
+<ht-loading wx:if="{{isLoading}}"></ht-loading>
+<view class="home">
+    <!-- 搜索 -->
+    <view class="search">
+        <mp-searchbar bindfocus="jumpSearch" cancel="{{false}}"></mp-searchbar>
+    </view>
+    <!-- end -->
+    <!-- 填充 -->
+    <view class="fill"></view>
+    <!-- end -->
+    <!-- 轮播图 -->
+    <swiper indicator-dots="{{false}}" autoplay="{{true}}" interval="5000" duration="500">
+        <swiper-item wx:for="{{articleSwiper}}" wx:key="key">
+            <view class="swiper-item" data-id="{{item.id}}" bindtap="jumpDetail">
+                <image src="{{item.img_url[0]}}" />
+                <view class="tip line-clamp-one">{{item.title}}</view>
+            </view>
+        </swiper-item>
+    </swiper>
+    <!-- end -->
+    <!-- 标题 -->
+    <ht-title text="最新文章"></ht-title>
+    <!-- end -->
+    <!-- 文章列表 -->
+    <ht-article-list list="{{articleList}}"></ht-article-list>
+    <!-- end -->
+    <ht-backtop wx:if="{{isBackTop}}"></ht-backtop>
+</view>

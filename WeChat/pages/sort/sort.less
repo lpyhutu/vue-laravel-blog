@@ -1,0 +1,52 @@
+.sort {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+
+    >.search {
+        height: 54px;
+    }
+
+    >.main {
+
+        flex: 1;
+        overflow: auto;
+
+        .menu {
+            width: 200rpx;
+            height: 100%;
+            overflow: auto;
+
+
+            .item {
+                text-align: center;
+                padding: 22rpx 0;
+                border-bottom: 1rpx solid #eee;
+
+                .text {
+                    flex-wrap: wrap;
+                }
+            }
+
+            .item-active {
+
+                background: #f7f7f7;
+
+                .text {
+                    border-right: 10rpx solid #999;
+
+                }
+            }
+
+        }
+
+        .content {
+            flex: 1;
+            background: #f7f7f7;
+            height: 100%;
+            overflow: auto;
+
+
+        }
+    }
+}

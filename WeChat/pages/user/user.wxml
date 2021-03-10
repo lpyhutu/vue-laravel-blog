@@ -1,0 +1,63 @@
+<view class="login" wx:if="{{!isRegister}}">
+    <mp-msg title="温馨提示">
+        <view slot="desc">为了更好的体验，获取您的公开信息（头像、昵称、地区及性别）{{app.globalData}}</view>
+        <view slot="handle">
+            <button open-type="getUserInfo" bindgetuserinfo="register">授权登陆</button>
+        </view>
+        <view slot="footer">
+            <view class="weui-footer__links">
+                <navigator url="" class="weui-footer__link">糊涂个人博客</navigator>
+            </view>
+            <view class="weui-footer__text">Copyright © 2020-2021 lpyhutu.cn</view>
+        </view>
+    </mp-msg>
+</view>
+<view class="user" wx:if="{{isRegister}}">
+    <view class="info">
+        <view class="header ht-flex">
+            <image class="avatar" src="{{userInfo.avatar_url}}" />
+            <view class="text ht-flex ht-row-between ht-flow-column">
+                <view class="name">{{userInfo.nick_name}}</view>
+                <view class="time">{{userInfo.last_at}}</view>
+            </view>
+        </view>
+        <view class="num ht-flex ht-row-between">
+            <view class="item ht-flex ht-col-center ht-flow-column ht-row-between">
+                <view class="total">{{articleTotal}}</view>
+                <view class="text">文章数</view>
+            </view>
+            <view class="item ht-flex ht-col-center ht-flow-column ht-row-between">
+                <view class="total">{{(userInfo.visits_time)}}</view>
+                <view class="text">浏览时长</view>
+            </view>
+            <view class="item ht-flex ht-col-center ht-flow-column ht-row-between">
+                <view class="total">{{run_at}}</view>
+                <view class="text">运行天数</view>
+            </view>
+        </view>
+    </view>
+    <view class="list">
+        <view class="item" wx:for="{{list}}" wx:key="key">
+            <button class="btn ht-flex  ht-row-between ht-col-center" bindtap="hanleItemList" data-path="{{item.path}}" data-title="{{item.title}}" open-type='{{item.title==="意见反馈"?"feedback":""}}'>
+                <view class="left ht-flex  ht-col-center">
+                    <icon class="iconfont {{item.icon}}" />
+                    <text>{{item.title}}</text>
+                </view>
+                <view class="right">
+                    <icon class="iconfont icon-right" />
+                </view>
+            </button>
+        </view>
+    </view>
+    <!-- <view class="list">
+        <view class="item ht-flex  ht-row-between" wx:for="{{list}}" wx:key="key">
+            <view class="left ht-flex  ht-col-center">
+                <icon class="iconfont {{item.icon}}" />
+                <text>{{item.title}}</text>
+            </view>
+            <view class="right">
+                <icon class="iconfont icon-right" />
+            </view>
+        </view>
+    </view> -->
+</view>

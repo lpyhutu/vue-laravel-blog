@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "ht-loading": "/components/ht-loading/loading"
+  },
+  "navigationBarTitleText": "更新日志"
+}

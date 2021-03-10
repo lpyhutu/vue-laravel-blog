@@ -1,0 +1,107 @@
+.user {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: #f7f7f7;
+    overflow: auto;
+
+    >.info {
+        padding: 30rpx 30rpx 20rpx;
+        margin: 25rpx;
+        background: #fff;
+        border-radius: 10rpx;
+
+        .header {
+            .avatar {
+                height: 120rpx;
+                width: 120rpx;
+                border-radius: 5rpx;
+            }
+
+            .text {
+                padding-left: 15rpx;
+
+                .name {
+                    font-size: 34rpx;
+                    // font-weight: bold;
+                }
+
+                .time {
+                    color: #999;
+                    font-size: 28rpx;
+                }
+            }
+        }
+
+        .num {
+            padding: 40rpx 0 10rpx;
+
+            .item {
+                flex: 1;
+                height: 100rpx;
+
+                .total {
+                    font-size: 34rpx;
+                    color: #fab906;
+                }
+
+                .text {
+                    font-size: 26rpx;
+                    color: #999;
+                }
+            }
+        }
+    }
+
+    >.list {
+        margin: 25rpx;
+        background: #fff;
+        border-radius: 10rpx;
+
+        .item {
+            padding: 17rpx 30rpx;
+            border-bottom: 1rpx solid #f7f7f7;
+
+            >.btn {
+                padding: 10rpx 0 !important;
+                border-radius: 0rpx !important;
+                font-weight: normal !important;
+                width: 100% !important;
+                background: #fff;
+                font-size: 32rpx;
+
+                >.left {
+                    flex: 1;
+                    color: #818181;
+
+                    icon {
+                        font-size: 45rpx;
+                    }
+
+                    .icon-color-1 {
+                        color: #14b91c;
+                    }
+
+                    .icon-color-2 {
+                        color: #fab906;
+                    }
+
+                    text {
+                        padding-left: 10rpx;
+                    }
+                }
+
+                >.right {
+                    icon {
+                        color: #999;
+                        font-size: 30rpx;
+                    }
+
+                }
+            }
+
+
+
+        }
+    }
+}

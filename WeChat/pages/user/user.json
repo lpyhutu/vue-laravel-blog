@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "mp-msg": "weui-miniprogram/msg/msg"
+  },
+  "navigationBarTitleText": "个人中心"
+}

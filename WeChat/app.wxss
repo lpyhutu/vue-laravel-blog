@@ -1,0 +1,9 @@
+@import '/common/common.wxss';
+@import '/common/iconfont.wxss';
+@import 'miniprogram_npm/weui-miniprogram/weui-wxss/dist/style/weui.wxss';
+
+
+page {
+  color: #515a6e;
+  font-size: 32rpx;
+}

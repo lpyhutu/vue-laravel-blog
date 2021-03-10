@@ -1,0 +1,16 @@
+<ht-loading wx:if="{{isLoading}}"></ht-loading>
+<view class="sort ht-flex ht-flow-column">
+    <view class="search">
+        <mp-searchbar bindfocus="jumpSearch" cancel="{{false}}"></mp-searchbar>
+    </view>
+    <view class="main ht-flex">
+        <div class="menu">
+            <view class="item  {{item.id===menuIndex?'item-active':''}}" wx:for="{{typeList}}" wx:key="key" data-type="{{item.id}}" bindtap="handleCurrentIndex">
+                <view class="text">{{item.title}}</view>
+            </view>
+        </div>
+        <div class="content">
+            <ht-article-list isSort="{{true}}" list="{{articleList}}"></ht-article-list>
+        </div>
+    </view>
+</view>

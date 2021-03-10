@@ -1,0 +1,3 @@
+<view class="backtop" bindtap="handleBacktop">
+    <icon class="iconfont icon-arrowup" />
+</view>

@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "ht-loading": "/components/ht-loading/loading",
+    "mp-dialog": "weui-miniprogram/dialog/dialog",
+    "wemark": "../../../wemark/wemark"
+  },
+  "navigationBarTitleText": "文章详情"
+}

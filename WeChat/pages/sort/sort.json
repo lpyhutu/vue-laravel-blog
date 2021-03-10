@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "ht-loading": "/components/ht-loading/loading",
+    "mp-searchbar": "weui-miniprogram/searchbar/searchbar",
+    "ht-article-list": "/components/ht-article-list/article-list"
+  },
+  "navigationBarTitleText": "分类"
+}

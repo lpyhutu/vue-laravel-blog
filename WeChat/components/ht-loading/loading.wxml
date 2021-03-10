@@ -1,0 +1,10 @@
+<view class="loading ht-flex ht-col-center ht-flow-column ht-row-center">
+    <view class="sk-wave">
+        <view class="sk-wave-rect"></view>
+        <view class="sk-wave-rect"></view>
+        <view class="sk-wave-rect"></view>
+        <view class="sk-wave-rect"></view>
+        <view class="sk-wave-rect"></view>
+    </view>
+    <view class="text">loading</view>
+</view>

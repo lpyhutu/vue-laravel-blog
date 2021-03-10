@@ -1,0 +1,30 @@
+<!-- 文章详情 -->
+<ht-loading wx:if="{{isLoading}}"></ht-loading>
+<view class="article-detail" wx:for="{{detail}}" wx:key="key">
+    <view class="header">
+        <view class="title">{{item.title}}</view>
+        <view class="num  ht-flex ht-col-center">
+            <icon class="iconfont icon-time-circle" />
+            <text>{{item.created_at}}</text>
+            <icon class="iconfont icon-eye" />
+            <text>{{item.read_num}}</text>
+        </view>
+    </view>
+    <view class="content">
+        <wemark md="{{item.content}}" link highlight type="wemark"></wemark>
+    </view>
+    <view class="btn ht-flex">
+        <view class="thumb ht-flex ht-col-center ht-row-center" bindtap="articleThumb">
+            <icon class="iconfont icon-like-fill" />
+            <text>{{item.thumb_num}}</text>
+        </view>
+    </view>
+    <view class="other">
+        <view class="up line-clamp-one" data-id="{{upArticle.id}}" bindtap="otherArticle" wx:if="{{upArticle!=null}}">
+            上一篇：{{upArticle.title}}
+        </view>
+        <view class="up line-clamp-one" data-id="{{downArticle.id}}" bindtap="otherArticle" wx:if="{{downArticle!=null}}">
+            下一篇：{{downArticle.title}}
+        </view>
+    </view>
+</view>

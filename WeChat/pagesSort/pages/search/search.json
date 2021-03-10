@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "mp-searchbar": "weui-miniprogram/searchbar/searchbar",
+    "ht-backtop": "/components/ht-backtop/backtop",
+    "ht-loading": "/components/ht-loading/loading",
+    "ht-article-list": "/components/ht-article-list/article-list"
+  },
+  "navigationBarTitleText": "搜索"
+}

@@ -1,0 +1,220 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    // font-family: theme;
+}
+
+a {
+    color: $ht-font-color;
+}
+
+#app {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    font-size: 14px;
+
+    //卡
+    .app-card {
+        padding: 15px;
+        border-radius: 5px;
+        background: $ht-white;
+
+        >.title {
+            padding-bottom: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            color: $ht-theme;
+            border-bottom: 1px solid #eee;
+        }
+
+        >.content {
+            padding-top: 10px;
+        }
+    }
+
+    //表格
+    .app-main {
+        background: #fff;
+        display: flex;
+        flex-flow: column;
+        height: 100%;
+        box-shadow: 0 2px 4px 0 #e7e7e7, 0 0 6px 0 #e7e7e7;
+
+
+        .app-nav {
+            display: flex;
+            height: 40px;
+            background: #F5F7FA;
+
+            >.item {
+                display: flex;
+                align-items: center;
+                height: 40px;
+                padding: 0 20px;
+                color: #909399;
+                transition: all .3s cubic-bezier(.645, .045, .355, 1);
+                border: 1px solid transparent;
+                cursor: pointer;
+            }
+
+            >.item-active {
+                color: $ht-theme;
+                background: #fff;
+                border-right-color: #DCDFE6;
+                border-left-color: #DCDFE6;
+                font-weight: bold;
+            }
+        }
+
+
+        .app-content {
+            padding: 10px 15px;
+            flex: 1;
+            display: flex;
+            flex-flow: column;
+
+            .header {
+                display: flex;
+                height: 40px;
+
+                div {
+                    margin-right: 5px;
+                }
+            }
+
+            >.content {
+                flex: 1;
+
+                .table-link {
+                    a {
+                        text-decoration: none;
+                        color: $ht-theme;
+                    }
+                }
+            }
+
+            >.paging {
+                display: flex;
+                justify-content: flex-end;
+                padding: 15px 0 0;
+                height: 50px;
+            }
+
+        }
+    }
+
+    ::selection {
+        background-color: #CCE2FF;
+        color: rgba(0, 0, 0, .87)
+    }
+}
+
+.el-table__fixed {
+    height: 100% !important;
+}
+
+//弹出窗口
+.el-dialog__wrapper {
+    display: flex;
+    align-items: center;
+
+    .el-dialog-fullscreen {
+        height: 80%;
+        width: 60%;
+    }
+
+    .el-dialog {
+        box-shadow: 1px 1px 50px rgba(0, 0, 0, 0.3) !important;
+        margin: 0px auto;
+        display: flex;
+        flex-flow: column;
+
+        .el-dialog-header {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .el-dialog__header {
+            background: #8d8d8d;
+            height: 25px;
+            padding: 20px 10px 10px 20px;
+
+            .title-left {
+                color: $ht-white;
+            }
+
+            .title-right {
+                color: $ht-white;
+
+                i {
+                    padding: 5px;
+                    border-radius: 3px;
+                    cursor: pointer;
+                    margin-right: 5px;
+
+                    &:hover {
+                        color: rgb(224, 224, 224);
+                    }
+                }
+            }
+        }
+
+        .el-dialog__body {
+            flex: 1;
+            background: $ht-white;
+            overflow: auto;
+
+            .dialog-contnet {
+                display: flex;
+                flex-flow: column;
+
+                >.item {
+                    display: flex;
+                    align-items: center;
+                    padding: 10px 0;
+
+                    >.left {
+                        text-align: right;
+                        width: 80px;
+                        padding-right: 10px;
+                    }
+
+                    >.right {
+                        flex: 1;
+
+                        button {
+                            margin-top: 10px;
+                            @include ht-button($ht-theme);
+                        }
+                    }
+                }
+            }
+
+        }
+
+        .el-dialog__footer {
+            padding: 10px 20px;
+            background: #f0f0f0;
+
+        }
+    }
+
+}
+
+
+// 字体
+// @font-face {
+//     font-family: "theme";
+//     src: url('../font//theme.ttf');
+//     font-weight: normal;
+//     font-style: normal;
+// }
+
+//字体大小
+@for $i from 6 through 10 {
+    .ht-font-size-#{$i*2}px {
+        font-size: 2px * $i;
+    }
+}

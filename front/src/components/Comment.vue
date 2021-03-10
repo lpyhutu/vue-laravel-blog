@@ -149,7 +149,6 @@ export default {
                     title: item,
                     name: `[${item}]`,
                     url: `${this.$assets}/upload/img/emotion/${index}.png`,
-                    // url: `http://blog.com/upload/img/emotion/${index}.png`,
                 });
             });
         },

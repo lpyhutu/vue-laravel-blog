@@ -1,0 +1,43 @@
+$ht-theme:#55cbc4; //主题颜色
+$ht-font-color:#303133; //字体颜色
+$ht-basebg:#edf2f6; //主题背景
+$ht-selection-bg:#cce2ff; //选择背景
+$ht-active-router: #ee4e03; //当前路由颜色
+$ht-white:#ffffff;
+$ht-minor-color:#909399; //次要文字
+
+$ht-refresh:#31b417; //刷新
+$ht-delete:#c70707; //删除
+$ht-add:#404040; //添加
+
+@mixin ht-transition($second) {
+    transition: all $second;
+    -webkit-transition: all $second;
+    -o-transition: all $second;
+    -moz-transition: all $second;
+}
+
+@mixin line-clamp($line) {
+    display: -webkit-box;
+    display: -moz-box;
+    overflow: hidden;
+    -webkit-line-clamp: $line;
+    -webkit-box-orient: vertical;
+}
+
+@mixin ht-button($bg, $fontColor:#fff) {
+    background: $bg;
+    color: $fontColor;
+    border: 1px solid $bg;
+    opacity: 0.8;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    &:active {
+        border: 1px solid #fff;
+        background: $bg;
+        opacity: 0.8;
+    }
+}

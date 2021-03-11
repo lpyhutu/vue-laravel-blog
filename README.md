@@ -1,30 +1,4 @@
-<h1>
-    <center>个人博客</center>
-</h1>
-
-<div style="display: flex; justify-content: center; font-size: 12px">
-        <div style="padding: 10px; display: flex; color: #fff">
-            <div style="background: #000; padding: 0 5px">version</div>
-            <div style="background: #1890ff; padding: 0 5px">1.0.8</div>
-        </div>
-        <div style="padding: 10px; display: flex; color: #fff">
-            <div style="background: #000; padding: 0 5px">npm</div>
-            <div style="background: #7dbe04; padding: 0 5px">6.12.0</div>
-        </div>
-        <div style="padding: 10px; display: flex; color: #fff">
-            <div style="background: #000; padding: 0 5px">vue</div>
-            <div style="background: #07adb3; padding: 0 5px">2.9.6</div>
-        </div>
-        <div style="padding: 10px; display: flex; color: #fff">
-            <div style="background: #000; padding: 0 5px">laravel</div>
-            <div style="background: #b37707; padding: 0 5px">7.18.0</div>
-        </div>
-        <div style="padding: 10px; display: flex; color: #fff">
-            <div style="background: #000; padding: 0 5px">mysql</div>
-            <div style="background: #1d7c2d; padding: 0 5px">5.7.0</div>
-        </div>
-    </div>
-
+# 个人博客1.x版本安装部署说明
 个人开发的博客网站，静态页面主要使用Vue+SCSS+ElementUI&AntDesignVueUI组件库，后端使用MySQL+Laravel+Redis+Socket实现，有需要的可以下载下来，根据下面提示修改配置文件，打包部署即可完成。
 
 前台预览：https://www.lpyhutu.cn/

@@ -289,7 +289,7 @@
                     <div class="right ht-flex ht-col-center">
                         <el-upload
                             class="avatar-uploader"
-                            :action="`${$api}api/common/uploadLogo`"
+                            :action="`${$api}index.php/api/common/uploadLogo`"
                             :show-file-list="false"
                             :on-success="handleAvatarSuccess"
                             :before-upload="beforeAvatarUpload"

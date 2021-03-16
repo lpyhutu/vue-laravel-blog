@@ -1,9 +1,9 @@
 # 个人博客1.x版本安装部署说明
 个人开发的博客网站，静态页面主要使用Vue+SCSS+ElementUI&AntDesignVueUI组件库，后端使用MySQL+Laravel+Redis+Socket实现，有需要的可以下载下来，根据下面提示修改配置文件，打包部署即可完成。
 
-前台预览：https://www.lpyhutu.cn/
+前台预览：https://www.lpya.cn/
 
-后台预览：https://adm.lpyhutu.cn/
+后台预览：https://adm.lpya.cn/
 
 小程序预览：在微信小程序平台搜索（RMRF）
 
@@ -87,7 +87,7 @@
 
 **相关配置**：修改main.js和api.js文件里面的接口地址
 
-**效果预览**：https://www.lpyhutu.cn/
+**效果预览**：https://www.lpya.cn/
 
 #### 2、后台（admin）
 
@@ -95,7 +95,7 @@
 
 **相关配置**：修改main.js和api.js文件里面的接口地址
 
-**效果预览**：https://adm.lpyhutu.cn/
+**效果预览**：https://adm.lpya.cn/
 
 #### 3、小程序（WeChat）
 

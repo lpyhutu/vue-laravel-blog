@@ -87,7 +87,7 @@
 
 **相关配置**：修改main.js和api.js文件里面的接口地址
 
-**效果预览**：https://www.lpyhutu.cn/
+**效果预览**：https://www.lpya.cn/
 
 #### 2、后台（admin）
 

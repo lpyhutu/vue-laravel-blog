@@ -1,0 +1,9 @@
+{
+    "apps": {
+        "name": "vr-sever",
+        "script": "npm run start",
+        "ignore_watch": [
+            "node_modules"
+        ]
+    }
+}

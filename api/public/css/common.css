@@ -1,0 +1,48 @@
+#app {
+  font-size: 14px;
+  background: #edf2f6;
+  color: #000000a6;
+}
+
+#app a {
+  text-decoration: none;
+}
+
+#app ::-moz-selection {
+  background: #cce2ff;
+  color: #666;
+}
+
+#app ::selection {
+  background: #cce2ff;
+  color: #666;
+}
+
+#app .ht-font-size-12px {
+  font-size: 12px;
+}
+
+#app .ht-font-size-14px {
+  font-size: 14px;
+}
+
+#app .ht-font-size-16px {
+  font-size: 16px;
+}
+
+#app .ht-font-size-18px {
+  font-size: 18px;
+}
+
+#app .ht-font-size-20px {
+  font-size: 20px;
+}
+
+#app .ht-font-size-22px {
+  font-size: 22px;
+}
+
+#app .ht-font-size-24px {
+  font-size: 24px;
+}
+

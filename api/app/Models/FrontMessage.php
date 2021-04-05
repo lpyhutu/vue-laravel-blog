@@ -152,16 +152,17 @@ class FrontMessage extends Model
             $msg = FrontMessageSub::where(["release" => 1, "id" => $sub_id])->first();
         }
         if (!$msg) {
-            return ["code" => Code::$SUCCESS_NO_TIP, "msg" => "该评论不存在！", "data" => $msg, "id" => $subId];
+            return ["code" => Code::$SUCCESS_NO_TIP, "msg" => "该评论不存在！", "data" => $msg];
         }
         $red = Redis::zscore(RedisKey::$MESSAGE_THUMB_NUM, $uid . "." . $id . $sub_id);
         if ($red) {
-            return ["code" => Code::$INFO, "msg" => "赞多了容易骄傲！"];
+            return ["code" => Code::$INFO, "msg" => "赞多了容易骄傲！", "data" => $msg];
         }
-        $res = $msg->increment("thumb_num");
-        if ($res) {
+        $msg->increment("thumb_num");
+        $msg->save();
+        if ($msg) {
             Redis::zadd(RedisKey::$MESSAGE_THUMB_NUM, 1, $uid . "." . $id . $sub_id);
         }
-        return ["code" => Code::$SUCCESS_NO_TIP, "msg" => "success"];
+        return ["code" => Code::$SUCCESS_NO_TIP, "msg" => "success", "data" => $msg];
     }
 }

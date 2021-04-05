@@ -1,1 +1,21 @@
-//
+$bg-theme:#1890ff; //主题
+$bg-default:#edf2f6; //背景
+$bg-white:#ffffff; //白色
+$bg-selection:#cce2ff; //文字选择
+$bg-tip:#b3b0b0; //提示文字
+$bg-black:black;
+
+@mixin ht-transition($second) {
+    -webkit-transition: all $second;
+    -o-transition: all $second;
+    -moz-transition: all $second;
+    transition: all $second;
+}
+
+@mixin line-clamp($line) {
+    display: -webkit-box;
+    display: -moz-box;
+    overflow: hidden;
+    -webkit-line-clamp: $line;
+    -webkit-box-orient: vertical;
+}

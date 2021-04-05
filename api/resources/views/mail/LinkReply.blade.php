@@ -18,7 +18,7 @@
     <br/>
     <div>您好！</div>
     <br/>
-    <div>您在糊涂博客网站上申请的友链，已通过审核，<a href="https://www.lpyhutu.cn/link/" target="_blank">请点击查看</a>！</div>
+    <div>您在糊涂博客网站上申请的友链，已通过审核，<a href="https://www.lpya.cn/link/" target="_blank">请点击查看</a>！</div>
     <div>如非本人操作，请忽略此邮件，由此给您带来的不便请谅解！</div>
     <br/>
     <div>糊涂个人博客开发平台</div>

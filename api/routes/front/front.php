@@ -15,7 +15,7 @@ Route::group(["middleware" => "request.jwt"], function () {
     Route::post("article/search", "Front\ArticleController@search");//搜索
     Route::post("article/type", "Front\ArticleController@type");//当前类别文章
 
-    Route::post("type/get", "Front\TypeArticleController@getRelease"); //文章类别
+    Route::post("type/getRelease", "Front\TypeArticleController@getRelease"); //文章类别
     Route::post("link/link", "Front\LinkController@getRelease");//链接列表
     Route::post("link/visitNum", "Front\LinkController@visitNum");//链接访问量
     Route::post("link/apply", "Front\LinkController@add");//申请链接

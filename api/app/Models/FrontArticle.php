@@ -14,12 +14,13 @@ class FrontArticle extends Model
 {
     protected $table = "blog_front_article";
     protected $dateFormat = 'U';
-    protected $fillable = ["title", "author", "cover_url", "email", "type", "img_url", "content", "release", "read_num", "thumb_num", "sort", "created_at"];
+    protected $fillable = ["title", "author", "cover_url", "email", "type", "img_url", "content", "keywords", "release", "read_num", "thumb_num", "sort", "created_at"];
 
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
     }
+
     /**
      * 文章类别
      * @return HasOne
@@ -123,7 +124,6 @@ class FrontArticle extends Model
             $total->IncrementOfDecrement("article_num", count($ids), false);
         }
         return ["code" => Code::$SUCCESS, "msg" => "删除成功！"];
-
     }
 
     /**
@@ -161,6 +161,7 @@ class FrontArticle extends Model
             $msg = "发布";
             $article->release = 1;
             $this->postBaiDuUrl($article->id);
+            $this->postSMUrl($article->id);
         }
         // $msg = $article->release === 1 ? "回收" : "发布";
         // $article->release = $article->release === 1 ? 2 : 1;
@@ -178,10 +179,11 @@ class FrontArticle extends Model
      */
     public function postBaiDuUrl($id)
     {
+
         $urls = array(
-            'https://www.lpyhutu.cn/detail/' . $id,
+            'https://www.lpya.cn/detail/' . $id,
         );
-        $api = 'http://data.zz.baidu.com/urls?site=https://www.lpyhutu.cn&token=2zVGNl4Ki3fUWruE';
+        $api = 'http://data.zz.baidu.com/urls?site=https://www.lpya.cn&token=2zVGNl4Ki3fUWruE';
         $ch = curl_init();
         $options = array(
             CURLOPT_URL => $api,
@@ -193,6 +195,28 @@ class FrontArticle extends Model
         curl_setopt_array($ch, $options);
         curl_exec($ch);
         // echo $result;
+    }
+
+    /**
+     * 神马收录
+     */
+    public function postSMUrl($id)
+    {
+        $urls = array(
+            'https://www.lpya.cn/detail/' . $id,
+        );
+        $api = 'https://data.zhanzhang.sm.cn/push?site=www.lpya.cn&user_name=1048672466@qq.com&resource_name=mip_add&token=TI_adfc400cefe3eb81bae09ba1bc164c30';
+        $ch = curl_init();
+        $options = array(
+            CURLOPT_URL => $api,
+            CURLOPT_POST => true,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POSTFIELDS => implode("\n", $urls),
+            CURLOPT_HTTPHEADER => array('Content-Type: text/plain'),
+        );
+        curl_setopt_array($ch, $options);
+        curl_exec($ch);
+        // file_put_contents("text.txt", ($result) . time());
     }
 
     /**
@@ -285,7 +309,6 @@ class FrontArticle extends Model
         $upArticle = FrontArticle::where("id", ">", $id)->where(["release" => 1])->limit(1)->first();
         $downArticle = FrontArticle::where("id", "<", $id)->where(["release" => 1])->orderBy('id', 'desc')->limit(1)->first();
         return ["code" => Code::$SUCCESS_NO_TIP, "msg" => "success", "data" => $article, "upArticle" => $upArticle, "downArticle" => $downArticle];
-
     }
 
     /**
@@ -303,7 +326,6 @@ class FrontArticle extends Model
             return ["code" => Code::$SUCCESS_NO_TIP, "msg" => "该文章不存在！", "data" => $article];
         }
         return ["code" => Code::$SUCCESS_NO_TIP, "msg" => "success", "data" => $article];
-
     }
 
     /**
@@ -320,13 +342,13 @@ class FrontArticle extends Model
         }
         $red = Redis::zscore(RedisKey::$ARTICLE_THUMB_NUM, $uid . "." . $id);
         if ($red) {
-            return ["code" => Code::$INFO, "msg" => "赞多了容易骄傲！"];
+            return ["code" => Code::$INFO, "msg" => "赞多了容易骄傲！", "data" => $article];
         }
         $res = $article->increment("thumb_num");
         if ($res) {
             Redis::zadd(RedisKey::$ARTICLE_THUMB_NUM, 1, $uid . "." . $id);
         }
-        return ["code" => Code::$SUCCESS_NO_TIP, "msg" => "success"];
+        return ["code" => Code::$SUCCESS_NO_TIP, "msg" => "success", "data" => $article];
     }
 
     /**
@@ -395,4 +417,29 @@ class FrontArticle extends Model
         return ["code" => Code::$SUCCESS_NO_TIP, "msg" => "success", "data" => $article];
     }
 
+    public function sitemap()
+    {
+        $article = FrontArticle::where(["release" => 1])->get();
+        if ($article->isEmpty()) {
+            return ["code" => Code::$WARNING, "msg" => "更新失败！", "data" => $article];
+        }
+
+        $content = "<url><loc>https://www.lpya.cn</loc><lastmod>" . date("Y-m-d") . "</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>" .
+            "<url><loc>https://www.lpya.cn/link</loc><lastmod>" . date("Y-m-d") . "</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>" .
+            "<url><loc>https://www.lpya.cn/message</loc><lastmod>" . date("Y-m-d") . "</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>" .
+            "<url><loc>https://www.lpya.cn/about</loc><lastmod>" . date("Y-m-d") . "</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>";
+
+        foreach ($article as $item) {
+            $content = $content .
+                "<url><loc>https://www.lpya.cn/detail/$item->id</loc><lastmod>" . date("Y-m-d", strtotime($item->created_at)) . "</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>";
+        }
+        $content = "<?xml version='1.0' encoding='utf-8'?><urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9' xmlns:news='http://www.google.com/schemas/sitemap-news/0.9'
+        xmlns:xhtml = 'http://www.w3.org/1999/xhtml' xmlns:mobile = 'http://www.google.com/schemas/sitemap-mobile/1.0'
+        xmlns:image = 'http://www.google.com/schemas/sitemap-image/1.1'
+        xmlns:video = 'http://www.google.com/schemas/sitemap-video/1.1' >
+        $content
+</urlset >";
+        file_put_contents("sitemap.xml", $content);
+        return ["code" => Code::$SUCCESS, "msg" => "更新成功!", "data" => $article];
+    }
 }

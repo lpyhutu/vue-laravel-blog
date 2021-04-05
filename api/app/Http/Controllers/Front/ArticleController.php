@@ -142,6 +142,11 @@ class ArticleController extends Controller
         $type = $request->input("type");
         $start = $request->input("start", 0);
         $pageSize = $request->input("pageSize", 15);
-        return $this->article->currentTypeArticle($type,$start,$pageSize);
+        return $this->article->currentTypeArticle($type, $start, $pageSize);
+    }
+
+    public function sitemap()
+    {
+        return $this->article->sitemap();
     }
 }

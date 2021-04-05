@@ -66,5 +66,8 @@ class Kernel extends HttpKernel
 
         'check.jwt' => \App\Http\Middleware\CheckAuth::class,
         'request.jwt' => \App\Http\Middleware\CheckRequest::class,
+        'clr' => \App\Http\Middleware\CheckLaravelRequest::class,
+        'check.login' => \App\Http\Middleware\CheckLogin::class,
+
     ];
 }

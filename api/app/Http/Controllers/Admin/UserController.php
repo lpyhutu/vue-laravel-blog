@@ -22,7 +22,8 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        echo strtotime(date("y-m-d 23:59:59")) - time();
+        echo date("y-m-d", strtotime("2020-11-11 23:59:59"));
+//        echo time("2020-11-11 23:59:59");
     }
 
     /**

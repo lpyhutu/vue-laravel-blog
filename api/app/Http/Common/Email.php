@@ -46,7 +46,7 @@ class Email
      */
     public static function message()
     {
-        Mail::send("mail.message", [], function (Message $message) {
+        Mail::send("mail.Message", [], function (Message $message) {
             $message->to("1048672466@qq.com");
             $message->subject("糊涂博客——网站留言");
         });
@@ -64,7 +64,7 @@ class Email
      */
     public static function messageReply($email, $name)
     {
-        Mail::send("mail.messageReply", ["name" => $name], function (Message $message) use ($email) {
+        Mail::send("mail.MessageReply", ["name" => $name], function (Message $message) use ($email) {
             $message->to($email);
             $message->subject("糊涂博客——留言回复");
         });
@@ -81,7 +81,7 @@ class Email
      */
     public static function comment($id)
     {
-        Mail::send("mail.comment", ["id" => $id], function (Message $message) {
+        Mail::send("mail.Comment", ["id" => $id], function (Message $message) {
             $message->to("1048672466@qq.com");
             $message->subject("糊涂博客——文章评论");
         });
@@ -99,7 +99,7 @@ class Email
      */
     public static function commentReply($id, $email)
     {
-        Mail::send("mail.commentReply", ["id" => $id], function (Message $message) use ($email) {
+        Mail::send("mail.CommentReply", ["id" => $id], function (Message $message) use ($email) {
             $message->to($email);
             $message->subject("糊涂博客——留言回复");
         });

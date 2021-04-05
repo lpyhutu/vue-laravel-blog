@@ -91,7 +91,8 @@ class FrontTotal extends Model
      */
     public function num()
     {
-        $visitsInterval = FrontUserVisitsInterval::count();
+        // $visitsInterval = FrontUserVisitsInterval::count();
+        $visitsInterval = FrontTotal::sum("visits_num");
         $article_num = FrontArticle::where(["release" => 1])->count();
         return ["code" => Code::$SUCCESS_NO_TIP, "data" => [
             "visitsInterval" => $visitsInterval,

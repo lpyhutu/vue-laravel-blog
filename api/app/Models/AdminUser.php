@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Http\Common\Code;
 use App\Http\Common\RedisKey;
 use DateTimeInterface;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redis;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -24,6 +25,7 @@ class AdminUser extends Authenticatable implements JWTSubject
     {
         return $date->format('Y-m-d H:i:s');
     }
+
     /**
      * @return HasOne
      */
@@ -43,9 +45,14 @@ class AdminUser extends Authenticatable implements JWTSubject
     public function login($username, $password, $ip, $captchaCode, $captchaKey)
     {
         //验证码认证
-        if (!captcha_api_check($captchaCode, $captchaKey)) {
+        $code = Cache::get('captcha_record_' . $captchaKey, $captchaCode);
+        $check = $captchaCode != $code;
+        if ($captchaCode != implode("", $code)) {
             return ["code" => Code::$WARNING, "msg" => "验证码错误！"];
         }
+//        if (!captcha_api_check($captchaCode, $captchaKey)) {
+//            return ["code" => Code::$WARNING, "msg" => "验证码错误！"];
+//        }
 //       密码错误超5次
         $isLock = Redis::zscore(RedisKey::$ADMIN_LOGIN_REQUEST_LIST, $ip);
         if ($isLock) {
@@ -125,13 +132,13 @@ class AdminUser extends Authenticatable implements JWTSubject
      * @param $created_at
      * @return array
      */
-    public function add($username,$password,$power,$created_at)
+    public function add($username, $password, $power, $created_at)
     {
-        $isAdminUser=AdminUser::where(["username"=>$username])->first();
-        if($isAdminUser){
+        $isAdminUser = AdminUser::where(["username" => $username])->first();
+        if ($isAdminUser) {
             return ["code" => Code::$WARNING, "msg" => "该用户已存在！", "data" => []];
         }
-        $adminUser = AdminUser::create(["username" => $username, "password" => Hash::make($password), "power"=>$power,"created_at" => $created_at]);
+        $adminUser = AdminUser::create(["username" => $username, "password" => Hash::make($password), "power" => $power, "created_at" => $created_at]);
         if (!$adminUser) {
             return ["code" => Code::$WARNING, "msg" => "添加失败！", "data" => $adminUser];
         }
@@ -146,24 +153,25 @@ class AdminUser extends Authenticatable implements JWTSubject
      * @param $created_at
      * @return array
      */
-    public function edit($id,$username,$password,$power,$created_at)
+    public function edit($id, $username, $password, $power, $created_at)
     {
-        $isAdminUser=AdminUser::where(["id"=>$id])->first();
-        if(!$isAdminUser){
+        $isAdminUser = AdminUser::where(["id" => $id])->first();
+        if (!$isAdminUser) {
             return ["code" => Code::$WARNING, "msg" => "该用户不存在！", "data" => []];
         }
-        if($isAdminUser->username!==$username){
-            $isAdminUser=AdminUser::where(["username"=>$username])->first();
-            if($isAdminUser){
+        if ($isAdminUser->username !== $username) {
+            $isAdminUser = AdminUser::where(["username" => $username])->first();
+            if ($isAdminUser) {
                 return ["code" => Code::$WARNING, "msg" => "该用户已存在！", "data" => []];
             }
         }
-        $adminUser = AdminUser::where(["id" => $id])->update(["username" => $username, "password" => Hash::make($password), "power"=>$power,"created_at" => $created_at]);
+        $adminUser = AdminUser::where(["id" => $id])->update(["username" => $username, "password" => Hash::make($password), "power" => $power, "created_at" => $created_at]);
         if (!$adminUser) {
-            return ["code" => Code::$WARNING, "msg" => "修改失败！","data"=>[]];
+            return ["code" => Code::$WARNING, "msg" => "修改失败！", "data" => []];
         }
-        return ["code" => Code::$SUCCESS, "msg" => "修改成功！","data"=>[]];
+        return ["code" => Code::$SUCCESS, "msg" => "修改成功！", "data" => []];
     }
+
     /**
      * token
      * @return mixed

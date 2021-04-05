@@ -59,6 +59,7 @@ Route::group(["middleware" => "check.jwt"], function () {
         Route::post("article/release", "ArticleController@release");
         Route::post("article/getRelease", "ArticleController@getRelease");
         Route::post("article/search", "ArticleController@search");
+        Route::post("article/sitemap", "ArticleController@sitemap");
         /**
          * 统计
          */

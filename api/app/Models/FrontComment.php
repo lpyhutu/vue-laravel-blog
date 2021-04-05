@@ -160,16 +160,17 @@ class FrontComment extends Model
             $comment = FrontCommentSub::where(["release" => 1, "id" => $sub_id])->first();
         }
         if (!$comment) {
-            return ["code" => Code::$SUCCESS_NO_TIP, "msg" => "该评论不存在！", "data" => []];
+            return ["code" => Code::$SUCCESS_NO_TIP, "msg" => "该评论不存在！", "data" => $comment];
         }
         $red = Redis::zscore(RedisKey::$COMMENT_THUMB_NUM, $uid . "." . $id . $sub_id);
         if ($red) {
-            return ["code" => Code::$INFO, "msg" => "赞多了容易骄傲！"];
+            return ["code" => Code::$INFO, "msg" => "赞多了容易骄傲！", "data" => $comment];
         }
-        $res = $comment->increment("thumb_num");
-        if ($res) {
+        $comment->increment("thumb_num");
+        $comment->save();
+        if ($comment) {
             Redis::zadd(RedisKey::$COMMENT_THUMB_NUM, 1, $uid . "." . $id . $sub_id);
         }
-        return ["code" => Code::$SUCCESS_NO_TIP, "msg" => "success", "data" => []];
+        return ["code" => Code::$SUCCESS_NO_TIP, "msg" => "success", "data" => $comment];
     }
 }

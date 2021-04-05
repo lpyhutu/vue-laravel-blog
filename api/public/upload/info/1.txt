@@ -1,0 +1,34 @@
+# 关于我
+
+:::
+**小&ensp;&ensp;&ensp;&ensp;名:** 糊涂 
+
+**联系邮箱:** [1048672466@qq.com](http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=1048672466@qq.com)
+
+**个人简介:** 
+
+&emsp; &emsp; 好好学习,天天向上 
+<br>
+## 关于博客
+**博客网址:** [https://www.lpyhutu.cn/](https://www.lpyhutu.cn/)
+
+**发布时间:** 2020年08月20日
+
+**博客版本:** 1.0.2 (2020年10月09日)
+
+**运行状态:** 正常运行
+
+**静态页面:** Vue2.9.6+Vuex+Axios+ElementUI+SCSS+ECharts+WebSocket
+
+**后台系统:** ThinkPHP5.0+MySQL5.7+Redis6.0+workerman
+
+**网站简介:** 本站主要的栏目有首页、归档、留言板、友链以及关于等
+<br>
+## 关于小程序
+**上线时间:** 2020年09月03日
+
+**运行状态:** ==维护中==
+
+**静态页面:** WXML+WXSS+JS+LinUI
+
+**后台系统:** Laravel7.18+MySQL5.7+Redis5.0+Socket

@@ -35,7 +35,9 @@ class FrontTypeArticle extends Model
     public function getAll($start = 0, $pageSize = 15)
     {
 
-        $type = FrontTypeArticle::orderBy('sort', 'asc')->offset($start)->limit($pageSize)->get();
+        $type = FrontTypeArticle::orderBy('sort', 'asc')->with(["article" => function ($query) {
+            return $query->where(["release" => 1]);
+        }])->offset($start)->limit($pageSize)->get();
         if ($type->isEmpty()) {
             return ["code" => Code::$SUCCESS_NO_TIP, "msg" => "空空如也！", "total" => 0, "data" => []];
         }

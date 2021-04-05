@@ -1,0 +1,24 @@
+@import "app.scss";
+
+#app {
+    font-size: 14px;
+    background: $bg-default;
+    color: #000000a6;
+
+    a {
+        text-decoration: none;
+    }
+
+    ::selection {
+        background: $bg-selection;
+        color: #666;
+    }
+
+    //字体大小
+    @for $i from 6 through 12 {
+        .ht-font-size-#{$i*2}px {
+            font-size: 2px * $i;
+        }
+    }
+
+}

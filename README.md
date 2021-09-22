@@ -3,7 +3,7 @@
 
 前台预览：https://www.lpya.cn/
 
-后台预览：https://adm.lpya.cn/
+后台预览：https://adm.lpya.cn/2248.php
 
 小程序预览：在微信小程序平台搜索（RMRF）
 
